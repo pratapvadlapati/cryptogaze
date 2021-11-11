@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Switch, Route, Link } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+import { withStyles } from "@mui/styles";
+
+
+
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Crypto from './components/Crypto';
+import News from './components/News';
+
+
+import styles from './styles';
+import Exchanges from './components/Exchanges';
+
+
+
+
+const App = (props) => {
+
+    const { classes } = props;
+
+    return (
+        <div className={classes.root}>
+            <div className={classes.Navbar}>
+                <Navbar />
+            </div>
+            <div className={classes.main}>
+                <Switch>
+                    <Route exact path="/">
+                        <Home />
+                    </Route>
+                </Switch>
+                <Switch>
+                    <Route extact path="/cryptocurrencies">
+                        <Crypto />
+                    </Route>
+                </Switch>
+                <Switch>
+                    <Route exact path="/exchanges">
+                        <Exchanges />
+                    </Route>
+                </Switch>
+                <Switch>
+                    <Route exact path="/news">
+                        <News />
+                    </Route>
+                </Switch>
+            </div>
+            <div className={classes.footer}>
+                <p className={classes.ftext}>&copy; 2021 privacy policy</p>
+            </div>
+        </div >
+    )
 }
 
-export default App;
+export default withStyles(styles)(App);
