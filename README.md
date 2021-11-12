@@ -15,6 +15,5 @@ The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
 \*\*This app will showcase all the crypto details at one place to have overview.
-It is powered by RapidAPIs.
 
 # cryptogaze

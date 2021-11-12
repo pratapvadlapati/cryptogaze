@@ -15,7 +15,7 @@ import News from './components/News';
 import styles from './styles';
 import Exchanges from './components/Exchanges';
 
-
+require('dotenv').config()
 
 
 const App = (props) => {
