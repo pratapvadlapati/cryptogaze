@@ -57,6 +57,19 @@ const styles = theme => ({
     },
     logoContainer: {
         margin: '10px',
+    },
+    cryptosearch: {
+        margin: '12px',
+        borderRadius: '9px',
+        textAlign: 'center',
+        border: '2px solid blue',
+        height: '30px',
+        width: '190px'
+
+
+    },
+    search: {
+        textAlign: 'center'
     }
 
 });

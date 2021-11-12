@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Avatar } from "@mui/material";
@@ -21,24 +21,43 @@ import { Link } from "react-router-dom";
 
 const Crypto = (props) => {
   const { classes } = props;
-  let array = [1, 2, 3, 4, 5];
 
   const { isSimplified } = props;
-  console.log(props);
+
   const count = isSimplified ? 10 : 100;
   const { data, isFetching } = useGetCryptosQuery(count);
-  console.log(data);
-  const globalStats = data?.data;
-  //console.log(globalStats.coins);
+
+  const [cryptos, setCryptos] = useState([]);
+
+  const [search, setSearch] = useState("");
+  //const globalStats = data?.data;
+
+  useEffect(() => {
+    setCryptos(data?.data?.coins);
+    const filteredData = data?.data?.coins.filter((coin) =>
+      coin.name.toLowerCase().includes(search.toLowerCase())
+    );
+    setCryptos(filteredData);
+  }, [cryptos, search]);
 
   if (isFetching) return "Loading...";
 
   return (
     <>
       {" "}
+      {!isSimplified ? (
+        <div className={classes.search}>
+          <input
+            className={classes.cryptosearch}
+            type="search"
+            placeholder="Search Coins"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      ) : null}
       <div>
         <Grid container spacing={3} className={classes.gcontainer}>
-          {globalStats?.coins.map((x) => {
+          {cryptos?.map((x) => {
             return (
               <Grid
                 item
